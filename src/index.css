@@ -1,0 +1,421 @@
+/* ---------------------------------------------------------------------------
+   Global styles / design system for the RegLog application.
+   Page specific styles live in src/styles/*.css
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Colours */
+  --color-bg: #0f1020;
+  --color-bg-soft: #171830;
+  --color-surface: rgba(255, 255, 255, 0.06);
+  --color-surface-strong: rgba(255, 255, 255, 0.1);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-text: #f4f5ff;
+  --color-text-muted: #a8abc8;
+  --color-primary: #7c5cff;
+  --color-primary-dark: #5b3ce6;
+  --color-accent: #22d3ee;
+  --color-success: #34d399;
+  --color-danger: #f87171;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #7c5cff 0%, #b14cff 55%, #22d3ee 100%);
+  --gradient-page: radial-gradient(circle at 15% 15%, #2a1a5e 0%, transparent 45%),
+    radial-gradient(circle at 85% 10%, #0d3b55 0%, transparent 40%),
+    linear-gradient(180deg, #0f1020 0%, #14152b 100%);
+
+  /* Shape */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-card: 0 24px 60px rgba(5, 6, 25, 0.55);
+
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, system-ui, -apple-system, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100%;
+  /* Fallback colour for the area outside the document (e.g. rubber band scroll) */
+  background: var(--color-bg);
+}
+
+#root {
+  min-height: 100%;
+}
+
+body {
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.6;
+  position: relative;
+  isolation: isolate;
+}
+
+/*
+ * The page gradient is painted on a fixed layer behind everything.
+ * Doing it this way (instead of "background-attachment: fixed" on the body)
+ * guarantees the gradient always covers the whole viewport, no matter how long
+ * the page is.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-page);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ------------------------------ Layout ---------------------------------- */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------ Navbar ---------------------------------- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+  background: rgba(15, 16, 32, 0.72);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.navbar__brand:hover {
+  text-decoration: none;
+}
+
+.navbar__logo {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--gradient-primary);
+  box-shadow: 0 8px 22px rgba(124, 92, 255, 0.45);
+  font-size: 1.1rem;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navbar__link {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navbar__link:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+  text-decoration: none;
+}
+
+.navbar__link--cta {
+  color: var(--color-text);
+  background: var(--gradient-primary);
+  box-shadow: 0 8px 20px rgba(124, 92, 255, 0.35);
+}
+
+.navbar__greeting {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.navbar__greeting strong {
+  color: var(--color-text);
+}
+
+/* ------------------------------ Buttons --------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--primary {
+  background: var(--gradient-primary);
+  box-shadow: 0 12px 28px rgba(124, 92, 255, 0.38);
+}
+
+.btn--primary:hover:not(:disabled) {
+  box-shadow: 0 16px 34px rgba(124, 92, 255, 0.5);
+}
+
+.btn--ghost {
+  background: var(--color-surface-strong);
+  border-color: var(--color-border);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.btn--block {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* ------------------------------ Forms ----------------------------------- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.form__input {
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: rgba(10, 11, 26, 0.55);
+  color: var(--color-text);
+  font-size: 0.98rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form__input::placeholder {
+  color: rgba(168, 171, 200, 0.55);
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(10, 11, 26, 0.8);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.22);
+}
+
+.form__input--invalid {
+  border-color: var(--color-danger);
+}
+
+.form__input--invalid:focus {
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.22);
+}
+
+.form__error {
+  font-size: 0.82rem;
+  color: var(--color-danger);
+  animation: fade-in 0.2s ease;
+}
+
+/* ------------------------------ Alerts ---------------------------------- */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 15px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: fade-in 0.25s ease;
+}
+
+.alert__icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.alert--error {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.38);
+  color: #fecaca;
+}
+
+.alert--error .alert__icon {
+  background: var(--color-danger);
+  color: #2b0b0b;
+}
+
+.alert--success {
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.38);
+  color: #bbf7d0;
+}
+
+.alert--success .alert__icon {
+  background: var(--color-success);
+  color: #04231a;
+}
+
+/* ------------------------------ Spinner --------------------------------- */
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.spinner--large {
+  width: 42px;
+  height: 42px;
+  border-width: 3px;
+  border-top-color: var(--color-primary);
+}
+
+.page-loader {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--color-text-muted);
+  min-height: 60vh;
+}
+
+/* ------------------------------ Utilities -------------------------------- */
+
+.text-success {
+  color: var(--color-success);
+}
+
+/* ------------------------------ Animations ------------------------------- */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect the "reduce motion" accessibility setting. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

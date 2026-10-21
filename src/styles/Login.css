@@ -1,0 +1,52 @@
+/* ---------------------------------------------------------------------------
+   Styles for the login page (/login)
+   The login card reuses the shared .auth-page / .auth-card styles from
+   Register.css, so only the login specific bits are declared here.
+   --------------------------------------------------------------------------- */
+
+.auth-card--login {
+  max-width: 430px;
+}
+
+/* A subtle accent line at the top of the login card */
+.auth-card--login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  border-radius: 0 0 6px 6px;
+  background: var(--gradient-primary);
+  box-shadow: 0 0 22px rgba(124, 92, 255, 0.65);
+}
+
+.auth-card--login .auth-card__intro {
+  margin-bottom: 30px;
+}
+
+.auth-card--login .auth-card__badge {
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(34, 211, 238, 0.14);
+  color: #a5f3fc;
+}
+
+.auth-card--login .form__input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.22);
+}
+
+.auth-card--login .btn--primary {
+  background: linear-gradient(135deg, #22d3ee 0%, #7c5cff 100%);
+  box-shadow: 0 12px 28px rgba(34, 211, 238, 0.28);
+}
+
+.auth-card--login .btn--primary:hover:not(:disabled) {
+  box-shadow: 0 16px 34px rgba(124, 92, 255, 0.45);
+}
+
+@media (max-width: 560px) {
+  .auth-card--login {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,294 @@
+/* ---------------------------------------------------------------------------
+   Styles for the protected home page (/home)
+   --------------------------------------------------------------------------- */
+
+.home-page {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 44px 24px 72px;
+  overflow: hidden;
+}
+
+.home-page__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.42;
+  pointer-events: none;
+  animation: float 14s ease-in-out infinite;
+}
+
+.home-page__glow--one {
+  width: 460px;
+  height: 460px;
+  top: -180px;
+  right: -120px;
+  background: radial-gradient(circle, #b14cff 0%, transparent 70%);
+}
+
+.home-page__glow--two {
+  width: 400px;
+  height: 400px;
+  bottom: -160px;
+  left: -120px;
+  background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
+  animation-delay: -5s;
+}
+
+/* -------------------------------- Hero ----------------------------------- */
+
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 48px 26px 46px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
+  animation: rise 0.5s ease both;
+}
+
+.hero__badge {
+  display: inline-block;
+  padding: 7px 16px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  background: rgba(52, 211, 153, 0.14);
+  color: #a7f3d0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  background: linear-gradient(120deg, #ffffff 15%, #b9a7ff 55%, #7de7f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero__subtitle {
+  margin: 18px auto 0;
+  max-width: 640px;
+  color: var(--color-text-muted);
+  font-size: 1.03rem;
+}
+
+.hero__subtitle strong {
+  color: var(--color-text);
+}
+
+.hero__actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.home-page__loader {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.home-page__alert {
+  margin: 22px auto 0;
+  max-width: 520px;
+  text-align: left;
+}
+
+/* -------------------------------- Cards ---------------------------------- */
+
+.cards {
+  position: relative;
+  z-index: 1;
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  padding: 26px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  animation: rise 0.55s ease both;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(124, 92, 255, 0.45);
+  box-shadow: 0 20px 44px rgba(5, 6, 25, 0.5);
+}
+
+.card__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  font-size: 1.45rem;
+  margin-bottom: 16px;
+}
+
+.card__icon--purple {
+  background: rgba(124, 92, 255, 0.2);
+  border: 1px solid rgba(124, 92, 255, 0.45);
+}
+
+.card__icon--green {
+  background: rgba(34, 211, 238, 0.16);
+  border: 1px solid rgba(34, 211, 238, 0.42);
+}
+
+.card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card__text {
+  color: var(--color-text-muted);
+  font-size: 0.93rem;
+  margin-bottom: 18px;
+}
+
+.card__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card__list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 13px;
+  border-radius: var(--radius-sm);
+  background: rgba(10, 11, 26, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.89rem;
+}
+
+.card__list li span {
+  color: var(--color-text-muted);
+}
+
+.card__list li strong {
+  font-weight: 600;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* -------------------------------- Quotes --------------------------------- */
+
+.quotes {
+  position: relative;
+  z-index: 1;
+  margin-top: 46px;
+}
+
+.quotes__title {
+  text-align: center;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.quotes__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.quote {
+  position: relative;
+  padding: 24px 22px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: rise 0.6s ease both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.quote:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(5, 6, 25, 0.45);
+}
+
+.quote__mark {
+  position: absolute;
+  top: 4px;
+  left: 16px;
+  font-size: 3.4rem;
+  line-height: 1;
+  color: rgba(124, 92, 255, 0.32);
+  font-family: Georgia, serif;
+}
+
+.quote__text {
+  position: relative;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.quote__author {
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------ Responsive -------------------------------- */
+
+@media (max-width: 640px) {
+  .home-page {
+    padding: 26px 16px 52px;
+  }
+
+  .hero {
+    padding: 36px 18px 32px;
+    border-radius: var(--radius-md);
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .card {
+    padding: 22px 18px;
+  }
+
+  .card__list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .card__list li strong {
+    text-align: left;
+  }
+}
