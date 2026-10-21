@@ -43,3 +43,10 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Local console logs from the launcher script
+backend-console.log
+backend-console.err
+frontend-console.log
+frontend-console.err
+
